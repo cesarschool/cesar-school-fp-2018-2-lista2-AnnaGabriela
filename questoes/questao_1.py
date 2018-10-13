@@ -28,7 +28,17 @@
 # substituindo apenas o comando print(questão...) existente.
 ##
 def main():
-    print("questao 1")
+    passwords = input("Type the passwords: ")
+    passwords = passwords.replace(' ', '').split(",")
+
+    for password in passwords:
+        if (len(password) >= 6 and len(password) <= 12):
+            if (not password.isdigit() and not password.isalpha()):
+                if (not password.isupper() and not password.islower()):
+                    if (password.find("$") != -1 or password.find("@") != -1 or password.find("#") != -1 ):
+                        print(password)
+
+    
     
 
 
