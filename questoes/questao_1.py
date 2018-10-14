@@ -38,9 +38,5 @@ def main():
                     if (password.find("$") != -1 or password.find("@") != -1 or password.find("#") != -1 ):
                         print(password)
 
-    
-    
-
-
 if __name__ == '__main__':
     main()
