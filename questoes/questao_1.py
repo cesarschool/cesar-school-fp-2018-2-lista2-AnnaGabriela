@@ -29,14 +29,18 @@
 ##
 def main():
     passwords = input("Type the passwords: ")
-    passwords = passwords.replace(' ', '').split(",")
+    passwords = passwords.split(",")
+    validPasswords = []
 
     for password in passwords:
+        password = password.strip()
         if (len(password) >= 6 and len(password) <= 12):
             if (not password.isdigit() and not password.isalpha()):
                 if (not password.isupper() and not password.islower()):
-                    if (password.find("$") != -1 or password.find("@") != -1 or password.find("#") != -1 ):
-                        print(password)
+                    if ("$" in password or "@" in password or "#" in password):
+                        validPasswords.append(password)
+
+    print(", ".join(validPasswords))
 
 if __name__ == '__main__':
     main()
