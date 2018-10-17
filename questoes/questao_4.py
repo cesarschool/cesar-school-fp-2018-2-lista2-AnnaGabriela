@@ -19,8 +19,60 @@
 # substituindo apenas o comando print(questão...) existente.
 ##
 def main():
-    print("questao 4")
+    date = input("Type the date: ")
 
+    year = int(date[:4])
+    month = int(date[5:7])
+    day = int(date[8:])
+
+    validDate = (month > 0 and month <= 12) and (day > 0 and day <= 31)
+    bissextileYear = year%4 == 0 and year%100 != 0 or year%400==0
+
+    if (validDate):
+        if month == 2:
+            if bissextileYear:
+                if day < 29: day = day + 1
+                elif day > 29: return
+                else:
+                    day = 1
+                    if month < 12:
+                        month = month + 1
+                    else:
+                        month = 1
+                        year = year + 1
+            else:
+                if day < 28: day = day + 1
+                elif day > 28: return
+                else:
+                    day = 1
+                    if month < 12:
+                        month = month + 1
+                    else:
+                        month = 1
+                        year = year + 1
+
+        elif month == 4 or month == 6 or month == 9 or month == 11:
+            if day < 30: day = day + 1
+            elif day == 31: return
+            else:
+                day = 1
+                if month < 12:
+                    month = month + 1
+                else:
+                    month = 1
+                    year = year + 1
+        
+        else:
+            if day < 31: day = day + 1
+            else:
+                day = 1
+                if month < 12:
+                    month = month + 1
+                else:
+                    month = 1
+                    year = year + 1
+
+        print("{:04d}-{:02d}-{:02d}".format(year, month, day))
 
     
 if __name__ == '__main__':
