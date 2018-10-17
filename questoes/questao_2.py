@@ -38,9 +38,27 @@
 # substituindo apenas o comando print(questão...) existente.
 ##
 def main():
-    print("questao 2")
+    up = left = right = down = 0
 
-
+    while (True):
+        string = input("Digite o comando (digite 0 para parar): ").upper()
+        
+        if (string == '0'): break
+        
+        if ("CIMA" in string): up = int(string[4:])
+        
+        if ("BAIXO" in string): down = int(string[5:])
+        
+        if ("ESQUERDA" in string): left = int(string[8:])
+        
+        if ("DIREITA" in string): right = int(string[7:])
+        
+    deltaY = left - right
+    deltaX = up - down
     
+    distance = (deltaX**2 + deltaY**2)**(1/2)
+
+    print(int(distance))
+
 if __name__ == '__main__':
     main()
