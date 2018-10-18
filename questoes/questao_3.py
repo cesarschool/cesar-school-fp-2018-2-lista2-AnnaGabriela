@@ -49,10 +49,9 @@ def main():
 
     if ("ROT" in inputString):
         numberRot = inputString[3:5].strip()
-        if numberRot.isdigit():
-            numberRot = int(numberRot)
-            text = inputString[5:].strip()
-        else: 
+        text = inputString[5:].strip()
+        numberRot = int(numberRot)
+        if numberRot < 0 or numberRot > 26:
             print("Erro")
             return
 
@@ -67,19 +66,23 @@ def main():
             if char.isupper():
                 char = char.lower()
                 originalIndex = originalAlpha.find(char)
-                newChar = newAlpha[originalIndex]
-                newChar = newChar.upper()
+                newChar = newAlpha[originalIndex].upper()
             elif char is " " or char is ".":
                 newChar = char
+            elif originalAlpha.find(char) == -1:
+                print("Erro")
+                return
             else:
                 originalIndex = originalAlpha.find(char)
                 newChar = newAlpha[originalIndex]
             newText = newText + newChar
             index = index + 1
+    
+        print(newText)
+    
     else:
         print("Erro")
 
-    print(newText)
 
 if __name__ == '__main__':
     main()
