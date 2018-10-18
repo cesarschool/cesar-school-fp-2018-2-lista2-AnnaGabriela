@@ -29,18 +29,36 @@
 ##
 def main():
     passwords = input("Type the passwords: ")
-    passwords = passwords.split(",")
-    validPasswords = []
 
-    for password in passwords:
-        password = password.strip()
-        if (len(password) >= 6 and len(password) <= 12):
-            if (not password.isdigit() and not password.isalpha()):
-                if (not password.isupper() and not password.islower()):
-                    if ("$" in password or "@" in password or "#" in password):
-                        validPasswords.append(password)
+    lastPasswordIndex = 0
+    lastPassword = False
 
-    print(", ".join(validPasswords))
+    while (True):
+        commaIndex = passwords.find(",")
 
+        if commaIndex == -1:
+            lastPassword = True
+
+        password = passwords[0:commaIndex]
+        lastPasswordIndex = commaIndex + 1
+        passwords = passwords[lastPasswordIndex:]
+        passwords = passwords.strip()
+
+        validSize = len(password) >= 6 and len(password) <= 12
+        oneDigitOneNumber = not password.isdigit() and not password.isalpha()
+        oneUpperOneLower = not password.isupper() and not password.islower()
+        oneSpecialChar = "$" in password or "@" in password or "#" in password
+        validPassword = validSize and oneDigitOneNumber and oneUpperOneLower and oneSpecialChar
+
+        if validPassword:
+            if not lastPassword:
+                print(password, end=', ')
+            else:
+                print(passwords)
+                break
+
+        elif lastPassword:
+            break
+            
 if __name__ == '__main__':
     main()
