@@ -45,9 +45,45 @@
 # substituindo apenas o comando print(questão...) existente.
 ##
 def main():
-    print("questao 3")
+    inputString = input("Digite a entrada: ")
 
+    if ("ROT" in inputString):
+        numberRotOneDigit = inputString[3:5].strip()
+        numberRotTwoDigits = inputString[3:6].strip()
+        if numberRotOneDigit: 
+            numberRot = int(numberRotOneDigit)
+            text = inputString[5:]
+        elif numberRotTwoDigits:
+            numberRot = int(numberRotTwoDigits)
+            text = inputString[6:]
+        else: 
+            print("Erro")
+            return
 
-    
+        originalAlpha = 'abcdefghijklmnopqrstuvwxyz'
+        rot = originalAlpha[0:numberRot]
+        newAlpha = originalAlpha[numberRot:] + rot
+        index = 0
+        newText = ''
+
+        while (index < len(text)):
+            char = text[index]
+            if char.isupper():
+                char = char.lower()
+                originalIndex = originalAlpha.find(char)
+                newChar = newAlpha[originalIndex]
+                newChar = newChar.upper()
+            elif char is " " or char is ".":
+                newChar = char
+            else:
+                originalIndex = originalAlpha.find(char)
+                newChar = newAlpha[originalIndex]
+            newText = newText + newChar
+            index = index + 1
+    else:
+        print("Erro")
+
+    print(newText)
+
 if __name__ == '__main__':
     main()
