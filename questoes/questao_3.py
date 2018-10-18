@@ -48,14 +48,10 @@ def main():
     inputString = input("Digite a entrada: ")
 
     if ("ROT" in inputString):
-        numberRotOneDigit = inputString[3:5].strip()
-        numberRotTwoDigits = inputString[3:6].strip()
-        if numberRotOneDigit: 
-            numberRot = int(numberRotOneDigit)
-            text = inputString[5:]
-        elif numberRotTwoDigits:
-            numberRot = int(numberRotTwoDigits)
-            text = inputString[6:]
+        numberRot = inputString[3:5].strip()
+        if numberRot.isdigit():
+            numberRot = int(numberRot)
+            text = inputString[5:].strip()
         else: 
             print("Erro")
             return
